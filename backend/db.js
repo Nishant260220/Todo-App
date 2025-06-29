@@ -9,7 +9,7 @@ copleted: boolean
 const mongooge = require("mongoose");
 const { boolean } = require("zod");
 
-mongooge.connect("mongodb+srv://NishantTyagi:Nishant%4026@cluster0.aavdap5.mongodb.net/")
+mongooge.connect("mongodb+srv://NishantTyagi:Nishant%4026@cluster0.aavdap5.mongodb.net/todos")
 const todoSchema = mongooge.Schema({
     title: String,
     description: String,
@@ -18,6 +18,6 @@ const todoSchema = mongooge.Schema({
 
 const todo = mongooge.model("todos", todoSchema)
 
-module.exports({
+module.exports = {
     todo: todo
-})
+}

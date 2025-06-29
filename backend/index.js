@@ -28,7 +28,7 @@ app.get("/todos", async function(req, res) {
     const todos = await todo.find({})
 
     res.json({
-
+        todos
     })
 })
 
