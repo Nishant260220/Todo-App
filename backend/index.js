@@ -1,7 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const { createTodo, updateTodo } = require("./types");
 const {todo} = require("./db.js");
 const app = express();
+
+app.use(cors({
+  origin: "http://localhost:3000/todos"
+}));
 app.use(express.json());
 
 app.post("/todos", async function(req, res) {
@@ -51,4 +56,6 @@ app.put("/copleted", async function(req, res) {
     })
 })
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log("Server running at port 3000");
+});
