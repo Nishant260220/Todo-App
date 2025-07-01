@@ -6,17 +6,17 @@ copleted: boolean
 }
 */
 
-const mongooge = require("mongoose");
-const { boolean } = require("zod");
+const mongoose = require("mongoose");
+// const { Boolean } = require("zod");
 
-mongooge.connect("mongodb+srv://NishantTyagi:Nishant%4026@cluster0.aavdap5.mongodb.net/todos")
-const todoSchema = mongooge.Schema({
+mongoose.connect("mongodb+srv://NishantTyagi:Nishant%4026@cluster0.aavdap5.mongodb.net/todos")
+const todoSchema = mongoose.Schema({
     title: String,
     description: String,
     completed: Boolean
 })
 
-const todo = mongooge.model("todos", todoSchema)
+const todo = mongoose.model("todos", todoSchema)
 
 module.exports = {
     todo: todo

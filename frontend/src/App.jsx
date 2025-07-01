@@ -19,7 +19,7 @@ function App() {
   return(
     <div>
       <CreateTodo onAdd={fetchTodos}/>
-      <Todos todos={todos}/>
+      <Todos todos={todos} onUpdate={fetchTodos} />
     </div>
   )
   }

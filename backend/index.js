@@ -5,7 +5,7 @@ const {todo} = require("./db.js");
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:3000/todos"
+  origin: "http://localhost:5173/todos"
 }));
 app.use(express.json());
 
@@ -37,7 +37,7 @@ app.get("/todos", async function(req, res) {
     })
 })
 
-app.put("/copleted", async function(req, res) {
+app.put("/completed", async function(req, res) {
     const updatePayload = req.body;
     const parsePayload = updateTodo.safeParse(updatePayload);
     if(!parsePayload.success){
@@ -46,14 +46,18 @@ app.put("/copleted", async function(req, res) {
         })
     }
 
-    await todo.update({
-        _id: req.body.id
-    },{
-        completed: true
-    })
-    res.json({
-        msg: "Todo marked as completed"
-    })
+   try {
+        await todo.updateOne(
+            { _id: updatePayload.id },
+            { $set: { completed: true } } 
+        );
+        res.json({
+            msg: "Todo marked as completed"
+        });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ msg: "Something went wrong in DB update" });
+    }
 })
 
 app.listen(3000, () => {
